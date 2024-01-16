@@ -10,7 +10,6 @@ class q_arr{
          n = size;
     }
 
-
     void insert_queue(int item){
         if(rear == -1){
             front = 0;
