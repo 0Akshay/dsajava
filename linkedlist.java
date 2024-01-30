@@ -16,6 +16,8 @@ class linkedlist {
             System.out.println("2. To insert at the end of the list");
             System.out.println("3. To print the list");
             System.out.println("4. To insert into a middle position");
+            System.out.println("5. To delete a node from the begining of the list");
+            System.out.println("6. To delete a node from teh middle of the list");
             System.out.print("\nEnter your choice: ");
 
             Scanner sc = new Scanner(System.in);
@@ -47,8 +49,16 @@ class linkedlist {
                 int item = sc.nextInt();
                 mylist.insert_middle(pos, item);
             }
+            else if (ch == 5) {
+                mylist.delete_front();
+            }
+            else if (ch == 6) {
+                System.out.print("\nEnter a position(starting from 0) which you would like to delete node form: ");
+                int pos = sc.nextInt();
+                mylist.delete_middle(pos);
+            }
             else {
-                System.out.println("\nINVALID INPUT!");
+                System.out.println("\nINVALID INPUT!\n");
             }
         }
     }
@@ -131,7 +141,7 @@ class linked_list {
                 current = current.next;
 
                 if (current == null) {
-                    System.out.println("\nUNSUCCESSFUL: Position is out of bounds!");
+                    System.out.println("\nUNSUCCESSFUL: Position is out of bounds!\n");
                     return;
                 }
             }
@@ -144,5 +154,33 @@ class linked_list {
             System.out.println("\nSuccess!\n");  
         }
     }
-}
 
+
+    void delete_front() {
+        node current = startptr;
+        startptr = current.next;
+        System.out.println("\nSuccess\n");
+    }
+
+
+    void delete_middle(int pos) {
+        node current = startptr;
+        node prevNode = null;
+        
+        for (int i = 0; i < pos; i++) {
+            prevNode = current;
+            current = current.next;
+            
+            if (current == null) {
+                System.out.println("\nUnsuccessul! Position is out of bounds!\n");
+
+                return;
+            }
+        }
+
+        node nextNode = current.next;
+        prevNode.next = nextNode;
+
+        System.out.println("\nSuccess!\n");
+    }
+}
